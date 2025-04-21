@@ -21,12 +21,17 @@ namespace Uzai
         private KeyCode dialogueKey = KeyCode.Space;
 
         private WaitForSeconds dialogueInterval => new WaitForSeconds(dialogueIntervalTime);
+        [SerializeField]
         private CanvasGroup groupDialogue;
+        [SerializeField]
         private TextMeshProUGUI textName;
+        [SerializeField]
         private TextMeshProUGUI textContent;
+        [SerializeField]
         private GameObject goTriangle;
         #endregion
 
+        [SerializeField]
         private PlayerInput playerInput;
         private UnityEvent onDialogueFinish;
 
