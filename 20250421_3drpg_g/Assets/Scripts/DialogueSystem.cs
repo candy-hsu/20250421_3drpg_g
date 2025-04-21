@@ -13,6 +13,8 @@ namespace Uzai
     public class DialogueSystem : MonoBehaviour
     {
         #region 資料區域
+        [SerializeField] private string dialogueFileName = "Open";
+
         [SerializeField, Header("對話間隔"), Range(0, 0.5f)]
         private float dialogueIntervalTime = 0.1f;
         [SerializeField, Header("開頭對話")]
@@ -38,6 +40,15 @@ namespace Uzai
         #region 事件
         private void Start()
         {
+            Debug.Log("📥 嘗試載入對話資料中...");
+            dialogueOpening = Resources.Load<DialogueData>($"Data/{dialogueFileName}");
+
+            if (dialogueOpening == null)
+            {
+                Debug.LogError("❌ 載入失敗：找不到對話資料 Data/" + dialogueFileName);
+                return;
+            }
+
             groupDialogue = GameObject.Find("DialogueCanvas").GetComponent<CanvasGroup>();
             textName = GameObject.Find("DialogueName").GetComponent<TextMeshProUGUI>();
             textContent = GameObject.Find("DialogueText").GetComponent<TextMeshProUGUI>();
@@ -45,6 +56,32 @@ namespace Uzai
             goTriangle.SetActive(false);
 
             playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+
+            if (groupDialogue == null )
+            {
+                Debug.LogError("❌ 載入 groupDialogue 元件失敗，請確認場景物件命名正確！");
+                return;
+            }
+            if (textName == null)
+            {
+                Debug.LogError("❌ 載入 textName 元件失敗，請確認場景物件命名正確！");
+                return;
+            }
+            if (textContent == null)
+            {
+                Debug.LogError("❌ 載入 textContent 元件失敗，請確認場景物件命名正確！");
+                return;
+            }
+            if (goTriangle == null)
+            {
+                Debug.LogError("❌ 載入 goTriangle 元件失敗，請確認場景物件命名正確！");
+                return;
+            }
+            if (playerInput == null)
+            {
+                Debug.LogError("❌ 載入 playerInput 元件失敗，請確認場景物件命名正確！");
+                return;
+            }
 
             StarDialogue(dialogueOpening);
         }
