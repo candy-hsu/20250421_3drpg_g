@@ -33,8 +33,7 @@ namespace Uzai
         private GameObject goTriangle;
         #endregion
 
-        [SerializeField]
-        private PlayerInput playerInput;
+        public PlayerInput playerInput;
         private UnityEvent onDialogueFinish;
 
         #region 事件
@@ -48,7 +47,7 @@ namespace Uzai
             goTriangle = GameObject.Find("DialogueIcon");
             goTriangle.SetActive(false);
 
-            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+            //playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
             if (playerInput == null)
             {
@@ -67,7 +66,7 @@ namespace Uzai
         /// <param name="_onDialogueFinish">對話結束後的事件,可以空值</param>
         public void StarDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
         {
-            //playerInput.enabled = false;
+            playerInput.enabled = false;
             StartCoroutine(FadeGroup());
             StartCoroutine(TypeEffect(data));
             onDialogueFinish = _onDialogueFinish;
@@ -123,7 +122,7 @@ namespace Uzai
             }
 
             StartCoroutine(FadeGroup(false));   //開啟  玩家輸入元件
-            //playerInput.enabled = true;
+            playerInput.enabled = true;
             //?.當 onDialogueFinish沒有值時就不執行
             onDialogueFinish?.Invoke();  //對話結束事件,呼叫();
         }
