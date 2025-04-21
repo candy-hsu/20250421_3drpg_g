@@ -38,49 +38,37 @@ namespace Uzai
         private UnityEvent onDialogueFinish;
 
         #region 事件
-        private void Start()
+        private IEnumerator Start()
         {
-            Debug.Log("📥 嘗試載入對話資料中...");
-            dialogueOpening = Resources.Load<DialogueData>($"Data/{dialogueFileName}");
+            yield return null; // 等一幀，避免 Unity 6 抓不到 PlayerInput
 
-            if (dialogueOpening == null)
-            {
-                Debug.LogError("❌ 載入失敗：找不到對話資料 Data/" + dialogueFileName);
-                return;
-            }
-
-            groupDialogue = GameObject.Find("DialogueCanvas").GetComponent<CanvasGroup>();
-            textName = GameObject.Find("DialogueName").GetComponent<TextMeshProUGUI>();
-            textContent = GameObject.Find("DialogueText").GetComponent<TextMeshProUGUI>();
-            goTriangle = GameObject.Find("DialogueIcon");
-            goTriangle.SetActive(false);
-
-            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
-
-            if (groupDialogue == null )
-            {
-                Debug.LogError("❌ 載入 groupDialogue 元件失敗，請確認場景物件命名正確！");
-                return;
-            }
-            if (textName == null)
-            {
-                Debug.LogError("❌ 載入 textName 元件失敗，請確認場景物件命名正確！");
-                return;
-            }
-            if (textContent == null)
-            {
-                Debug.LogError("❌ 載入 textContent 元件失敗，請確認場景物件命名正確！");
-                return;
-            }
-            if (goTriangle == null)
-            {
-                Debug.LogError("❌ 載入 goTriangle 元件失敗，請確認場景物件命名正確！");
-                return;
-            }
+            playerInput = GameObject.Find("Player")?.GetComponent<PlayerInput>();
             if (playerInput == null)
             {
-                Debug.LogError("❌ 載入 playerInput 元件失敗，請確認場景物件命名正確！");
-                return;
+                Debug.LogError("❌ 找不到 Player 或 PlayerInput");
+                yield break;
+            }
+
+            // 其他 UI 元件初始化
+            groupDialogue = GameObject.Find("DialogueCanvas")?.GetComponent<CanvasGroup>();
+            textName = GameObject.Find("DialogueName")?.GetComponent<TextMeshProUGUI>();
+            textContent = GameObject.Find("DialogueText")?.GetComponent<TextMeshProUGUI>();
+            goTriangle = GameObject.Find("DialogueIcon");
+
+            if (groupDialogue == null || textName == null || textContent == null || goTriangle == null)
+            {
+                Debug.LogError("❌ UI 元件未正確初始化");
+                yield break;
+            }
+
+            goTriangle.SetActive(false);
+
+            // 載入 ScriptableObject 對話
+            dialogueOpening = Resources.Load<DialogueData>("Data/Open");
+            if (dialogueOpening == null)
+            {
+                Debug.LogError("❌ 找不到對話資料 Data/Open.asset");
+                yield break;
             }
 
             StarDialogue(dialogueOpening);
