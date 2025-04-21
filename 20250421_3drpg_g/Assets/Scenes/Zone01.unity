@@ -12119,10 +12119,18 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 8532947722980353671, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
+      propertyPath: m_Name
+      value: DialogueText
+      objectReference: {fileID: 0}
     - target: {fileID: 8532947723265545362, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e1574c51dd033ba48a2182d1ab121365, type: 3}
+    - target: {fileID: 8532947723265545364, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
+      propertyPath: m_Name
+      value: DialogueIcon
+      objectReference: {fileID: 0}
     - target: {fileID: 8532947723292668569, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -12139,9 +12147,13 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 8532947723292668571, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
+      propertyPath: m_Name
+      value: DialogueName
+      objectReference: {fileID: 0}
     - target: {fileID: 8532947723635127240, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
       propertyPath: m_Name
-      value: "\u756B\u5E03\u5C0D\u8A71\u7CFB\u7D71"
+      value: DialogueCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 8532947723635127252, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
       propertyPath: m_Pivot.x
@@ -12226,6 +12238,10 @@ PrefabInstance:
     - target: {fileID: 8532947723635127253, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
       propertyPath: m_Alpha
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8532947723635127255, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8532947723635127250, guid: aa14d591fdedf6345808c4257d46ffc3, type: 3}

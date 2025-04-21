@@ -25,9 +25,9 @@ namespace Uzai
         [SerializeField, Header("啟動後對話結束的事件")]
         private UnityEvent onDialogueFinishAfterActive;
 
-        private void Awake()
+        private void Start()
         {
-            dialogueSystem = GameObject.Find("畫布對話系統").GetComponent<DialogueSystem>();
+            dialogueSystem = GameObject.Find("DialogueCanvas").GetComponent<DialogueSystem>();
         }
 
         //3D物件適用

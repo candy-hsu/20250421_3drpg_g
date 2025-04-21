@@ -31,12 +31,12 @@ namespace Uzai
         private UnityEvent onDialogueFinish;
 
         #region 事件
-        private void Awake()
+        private void Start()
         {
-            groupDialogue = GameObject.Find("畫布對話系統").GetComponent<CanvasGroup>();
-            textName = GameObject.Find("對話名稱").GetComponent<TextMeshProUGUI>();
-            textContent = GameObject.Find("對話內容").GetComponent<TextMeshProUGUI>();
-            goTriangle = GameObject.Find("對話完成圖示");
+            groupDialogue = GameObject.Find("DialogueCanvas").GetComponent<CanvasGroup>();
+            textName = GameObject.Find("DialogueName").GetComponent<TextMeshProUGUI>();
+            textContent = GameObject.Find("DialogueText").GetComponent<TextMeshProUGUI>();
+            goTriangle = GameObject.Find("DialogueIcon");
             goTriangle.SetActive(false);
 
             playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
