@@ -38,37 +38,22 @@ namespace Uzai
         private UnityEvent onDialogueFinish;
 
         #region 事件
-        private IEnumerator Start()
+        private void Start()
         {
-            yield return null; // 等一幀，避免 Unity 6 抓不到 PlayerInput
+            dialogueOpening = Resources.Load<DialogueData>($"Data/{dialogueFileName}");
 
-            playerInput = GameObject.Find("Player")?.GetComponent<PlayerInput>();
-            if (playerInput == null)
-            {
-                Debug.LogError("❌ 找不到 Player 或 PlayerInput");
-                yield break;
-            }
-
-            // 其他 UI 元件初始化
-            groupDialogue = GameObject.Find("DialogueCanvas")?.GetComponent<CanvasGroup>();
-            textName = GameObject.Find("DialogueName")?.GetComponent<TextMeshProUGUI>();
-            textContent = GameObject.Find("DialogueText")?.GetComponent<TextMeshProUGUI>();
+            groupDialogue = GameObject.Find("DialogueCanvas").GetComponent<CanvasGroup>();
+            textName = GameObject.Find("DialogueName").GetComponent<TextMeshProUGUI>();
+            textContent = GameObject.Find("DialogueText").GetComponent<TextMeshProUGUI>();
             goTriangle = GameObject.Find("DialogueIcon");
-
-            if (groupDialogue == null || textName == null || textContent == null || goTriangle == null)
-            {
-                Debug.LogError("❌ UI 元件未正確初始化");
-                yield break;
-            }
-
             goTriangle.SetActive(false);
 
-            // 載入 ScriptableObject 對話
-            dialogueOpening = Resources.Load<DialogueData>("Data/Open");
-            if (dialogueOpening == null)
+            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+
+            if (playerInput == null)
             {
-                Debug.LogError("❌ 找不到對話資料 Data/Open.asset");
-                yield break;
+                Debug.LogError("❌ 載入 playerInput 元件失敗，請確認場景物件命名正確！");
+                return;
             }
 
             StarDialogue(dialogueOpening);
@@ -82,7 +67,7 @@ namespace Uzai
         /// <param name="_onDialogueFinish">對話結束後的事件,可以空值</param>
         public void StarDialogue(DialogueData data, UnityEvent _onDialogueFinish = null)
         {
-            playerInput.enabled = false;
+            //playerInput.enabled = false;
             StartCoroutine(FadeGroup());
             StartCoroutine(TypeEffect(data));
             onDialogueFinish = _onDialogueFinish;
@@ -138,7 +123,7 @@ namespace Uzai
             }
 
             StartCoroutine(FadeGroup(false));   //開啟  玩家輸入元件
-            playerInput.enabled = true;
+            //playerInput.enabled = true;
             //?.當 onDialogueFinish沒有值時就不執行
             onDialogueFinish?.Invoke();  //對話結束事件,呼叫();
         }
