@@ -39,7 +39,7 @@ namespace Uzai
             goTriangle = GameObject.Find("對話完成圖示");
             goTriangle.SetActive(false);
 
-            playerInput = GameObject.Find("PlayerCapsule").GetComponent<PlayerInput>();
+            playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
 
             StarDialogue(dialogueOpening);
         }

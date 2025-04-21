@@ -19,7 +19,7 @@ namespace Uzai
         [SerializeField, Header("啟動後的對話資料")]
         private DialogueData dataDialogueActive;
 
-        private string nameTarget = "PlayerCapsule";
+        private string nameTarget = "Player";
         private DialogueSystem dialogueSystem;
 
         [SerializeField, Header("啟動後對話結束的事件")]
